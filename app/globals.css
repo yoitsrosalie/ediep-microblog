@@ -1,26 +1,236 @@
 @import "tailwindcss";
+/* ==========================================================================
+   Ediep Microblog — Design Tokens
+   Extracted from ediep-microblog-identity-prototype.html
+   Drop into app/globals.css. Font files should live in /public/fonts/
+   and be loaded via next/font/local for perf (see note at bottom).
+   ========================================================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color */
+  --black: #081712;
+  --charcoal: #0f231c;
+  --card: #12261e;
+  --off-white: #f3efe4;
+  --off-white-dim: #b9c4bc;
+  --gold: #c9a24d;
+  --gold-bright: #e8c877;
+  --gold-dim: #8a7038;
+  --line: #1e3a2e;
+
+  /* Type scale */
+  --font-mark: 'Pirata One', serif;         /* wordmark / signature only */
+  --font-display: 'Barlow Condensed', sans-serif; /* headlines */
+  --font-body: 'Inter', sans-serif;         /* body copy */
+  --font-label: 'Bayon', sans-serif;        /* eyebrows, meta, labels, buttons */
+
+  /* Spacing / radius kept tight & editorial — no soft rounded-card look */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-pill: 999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #040d0a;
+  font-family: 'Inter', sans-serif;
 }
+
+/* ---------- layout component classes ---------- */
+
+.feed {
+  padding: 0 0 90px;
+}
+
+.post {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 18px;
+  position: relative;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+  .post-body {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--off-white-dim);
+    margin-bottom: 12px;
+  }
+
+/* ---------- Reusable component classes ---------- */
+
+.eyebrow {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.section-label {
+  font-family: var(--font-label);
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.timestamp {
+  font-family: var(--font-label);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--off-white-dim);
+}
+
+.headline-bracket {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 21px;
+  line-height: 1.15;
+  color: var(--off-white);
+}
+
+.headline-bracket .slash {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.new-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.new-flag .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--black);
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.breaking-strip {
+  background: var(--gold);
+  color: var(--black);
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.install-pill {
+  font-family: var(--font-label);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold-bright);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+}
+
+.media-placeholder {
+  width: 100%;
+  height: 180px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #1c3629, #0f231c);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-label);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+}
+
+.media-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.embed-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--gold-dim), #4a3d1f);
+  flex-shrink: 0;
+}
+
+.embed {
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.embed-text {
+  font-family: var(--font-label);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--off-white-dim);
+  text-transform: uppercase;
+}
+
+
+/*
+  NOTE ON FONTS:
+  The prototype embeds all four font families as base64 woff2 across every
+  weight — fine for a single static preview file, bad for production
+  (huge payload, works against the fast-by-default build philosophy).
+
+  For the real build:
+    1. Self-host only the weights actually used:
+       - Pirata One: 400 (mark only, used sparingly)
+       - Barlow Condensed: 700, 800 (headlines)
+       - Inter: 400, 500, 600 (body, meta)
+       - Bayon: 400 (labels/eyebrows/buttons — it only ships one weight)
+    2. Use next/font/local so Next.js self-hosts, subsets, and injects
+       font-display: swap automatically — no manual @font-face/base64 needed.
+    3. Skip weights the prototype loaded "just in case" (e.g. Barlow
+       Condensed 500/600) unless a screen actually uses them.
+*/
