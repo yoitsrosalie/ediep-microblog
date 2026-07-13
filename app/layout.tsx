@@ -33,7 +33,10 @@ export default function RootLayout({
         <link rel="manifest" href="https://progressier.app/JhJZFDQPWgkk74RuVmzj/progressier.json" />
         <Script src="https://progressier.app/JhJZFDQPWgkk74RuVmzj/script.js" strategy="afterInteractive" />
       </head>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
