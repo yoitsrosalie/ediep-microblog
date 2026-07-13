@@ -28,12 +28,14 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    ><Analytics />
+    >
       <head>
         <link rel="manifest" href="https://progressier.app/JhJZFDQPWgkk74RuVmzj/progressier.json" />
         <Script src="https://progressier.app/JhJZFDQPWgkk74RuVmzj/script.js" strategy="afterInteractive" />
       </head>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">{children}
+      <Analytics />
+      </body>
     </html>
   );
 }

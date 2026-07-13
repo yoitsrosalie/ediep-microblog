@@ -6,7 +6,7 @@ export default async function Home() {
   if (!supabase) {
     return <div>Supabase client is not initialized</div>;
   }
-  
+
   const { data: posts, error } = await supabase
     .from('posts')
     .select('*')
