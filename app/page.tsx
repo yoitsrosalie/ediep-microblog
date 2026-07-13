@@ -19,7 +19,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="feed">
+    <main role="main"className="feed">
       {posts?.map((post: Post) => (
         <PostCard key={post.id} post={post} />
       ))}
