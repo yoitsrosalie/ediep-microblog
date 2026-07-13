@@ -69,7 +69,7 @@ export default function AdminPage() {
       <div className="mx-auto w-full max-w-6xl">
       <div className="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)] items-start">
         <div className="lg:col-start-1 space-y-4">
-        <h1 className="text-2xl font-semibold">New Post</h1>
+        <h1 className="text-2xl font-semibold">Hi Eric!</h1>
         <p className="text-sm text-slate-600">Choose a post type then fill in the details.</p>
         </div>
         
