@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { revalidatePath } from 'next/cache'
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL as string,
@@ -26,6 +27,8 @@ export async function POST(req: Request) {
     const { data, error } = await supabaseAdmin.from('posts').insert([insertRow])
 
     if (error) return NextResponse.json({ error }, { status: 500 })
+
+    revalidatePath('/')
 
     return NextResponse.json({ data }, { status: 201 })
   } catch (err) {

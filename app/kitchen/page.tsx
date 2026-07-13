@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function AdminPage() {
   const [postType, setPostType] = useState<'text' | 'image' |'embed' | 'quote'>('text')
@@ -9,6 +10,7 @@ export default function AdminPage() {
   const [embedUrl, setEmbedUrl] = useState('')
   const [embedLabel, setEmbedLabel] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter()
 
   // Server-side insertion moved to app/api/create-post/route.ts
   // Removed server-only createClient/POST handler from this client component
@@ -55,6 +57,7 @@ export default function AdminPage() {
       }
 
       window.alert('Post created successfully!')
+      router.refresh()
       window.open('/', '_blank')
     } catch (err) {
       console.error('Unexpected error creating post:', err)
