@@ -43,10 +43,14 @@ body {
 /* ---------- layout component classes ---------- */
 
 .feed {
+  max-width: 480px;
+  margin: 0 auto;
   padding: 0 0 90px;
 }
 
 .post {
+  max-width: 480px;
+  margin: 0 auto;
   border-bottom: 1px solid var(--line);
   padding: 16px 18px;
   position: relative;
@@ -217,12 +221,9 @@ body {
 
 .embed-media :where(iframe, blockquote, video, audio) {
   width: 100%;
+  max-width: 100%;
   display: block;
   border: 0;
-}
-
-.embed-media :where(iframe) {
-  min-height: 260px;
 }
 
 .embed-text {

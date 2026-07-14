@@ -4,10 +4,11 @@ export interface Post {
   id: string;
   type: PostType;
   headline: string;
-  content: string;
+  content: string | null;
   created_at: string;
   updated_at: string | null;
   image_url: string | null;
   embed_url: string | null;
   embed_label: string | null;
+  embed_html: string | null;
 }
