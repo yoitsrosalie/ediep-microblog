@@ -11,7 +11,8 @@ export default function AdminPage() {
   const [embedLabel, setEmbedLabel] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-
+  const dynamic = 'force-dynamic'
+  
   // Server-side insertion moved to app/api/create-post/route.ts
   // Removed server-only createClient/POST handler from this client component
 
