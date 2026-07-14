@@ -2,7 +2,7 @@ import PostCard from '@/components/PostCard';
 import { supabase } from '@/lib/supabase';
 import { Post } from '@/lib/types';
 
-export const revalidate = 'force-dynamic'; // Disable caching for this page
+export const dynamic = 'force-dynamic'; // Disable caching for this page
 
 export default async function Home() {
   if (!supabase) {
