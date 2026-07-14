@@ -52,6 +52,7 @@ export default function EmbedRenderer({ html }: EmbedRendererProps) {
     <div
       ref={containerRef}
       className="embed-media"
+      suppressHydrationWarning      
       dangerouslySetInnerHTML={{ __html: html }}
     />
   )
