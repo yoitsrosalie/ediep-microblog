@@ -22,6 +22,7 @@ export async function POST(req: Request) {
       image_url: body.image_url ?? null,
       embed_url: body.embed_url ?? null,
       embed_label: body.embed_label ?? null,
+      embed_html: body.embed_html ?? null, 
     }
 
     const { data, error } = await supabaseAdmin.from('posts').insert([insertRow])

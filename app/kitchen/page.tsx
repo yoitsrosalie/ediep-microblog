@@ -9,12 +9,9 @@ export default function AdminPage() {
   const [imageUrl, setImageUrl] = useState('')
   const [embedUrl, setEmbedUrl] = useState('')
   const [embedLabel, setEmbedLabel] = useState('')
+  const [embedHtml, setEmbedHtml] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const router = useRouter()
-  const dynamic = 'force-dynamic'
-  
-  // Server-side insertion moved to app/api/create-post/route.ts
-  // Removed server-only createClient/POST handler from this client component
 
   function resetForm() {
     if (isSubmitting) return
@@ -24,6 +21,7 @@ export default function AdminPage() {
     setImageUrl('')
     setEmbedUrl('')
     setEmbedLabel('')
+    setEmbedHtml('')
   }
   
   async function handleSubmit() {
@@ -41,6 +39,7 @@ export default function AdminPage() {
       image_url: postType === 'image' ? imageUrl : null,
       embed_url: postType === 'embed' ? embedUrl : null,
       embed_label: postType === 'embed' ? embedLabel : null,
+      embed_html: postType === 'embed' ? embedHtml : null,
     }
 
     try {
@@ -119,8 +118,20 @@ export default function AdminPage() {
           <div className="space-y-2">
             {postType === 'embed' && (
               <>
+              <label className="text-sm font-medium text-black font-semibold" htmlFor="embedHtml">
+              Embed Code
+              </label>
+              <textarea
+                id="embedHtml"
+                className="w-full rounded-md border border-slate-700 px-3 py-2 font-mono text-xs"
+                rows={6}
+                value={embedHtml}
+                onChange={(e) => setEmbedHtml(e.target.value)}
+                placeholder='Paste embed code from Instagram, YouTube, Spotify, or Tidal (e.g. <iframe ...></iframe>)'
+              />
+
               <label className="text-sm font-medium text-black font-semibold" htmlFor="embedUrl">
-              Embed URL
+              Embed URL <span className="font-normal text-slate-600">(fallback link if embed code is empty)</span>
               </label>
               <input id="embedUrl" className="w-full rounded-md border border-slate-700 px-3 py-2" value={embedUrl} onChange={(e) => setEmbedUrl(e.target.value)} placeholder="Embed URL" />
               
